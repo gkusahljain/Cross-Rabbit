@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cross Rabbit Clothing & Co.</title>
+  <meta name="description" content="Cross Rabbit Clothing & Co. — Men's fashion, Mysuru. Home • About • Contact." />
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0b1220;
+      --muted:#6b7280;
+      --accent:#0b86b8;
+      --accent-2:#f59e0b;
+      --card:#f8fafc;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto;background:var(--bg);color:var(--text)}
+    a{color:inherit}
+    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+    /* Header */
+    header{position:fixed;left:0;right:0;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);border-bottom:1px solid #eef2f6;z-index:1200}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    /* larger, high-contrast logo with white panel and shadow */
+    .brand img{height:72px;width:auto;padding:8px;background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(11,17,24,0.08)}
+    .brand h1{font-size:18px;margin:0;font-weight:700}
+    nav ul{display:flex;gap:14px;align-items:center;list-style:none;margin:0;padding:0}
+    nav a{font-weight:600;color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+    nav a:hover{color:var(--accent)}
+
+    /* Hero */
+    .hero{position:relative;height:92vh;display:flex;align-items:center}
+    .hero-bg{
+      position:absolute;inset:0;
+      background-image:url('https://images.unsplash.com/photo-1520975912894-3f4f9c5f5e3d?auto=format&fit=crop&w=1800&q=80');
+      background-size:cover;background-position:center;
+      transform-origin:center center;
+      transition:transform 12s linear;
+      filter:contrast(1.02) saturate(1.02);
+    }
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(11,17,24,0.12), rgba(255,255,255,0.18));}
+    .hero-content{position:relative;z-index:3;padding:28px 20px;max-width:900px;margin:auto;text-align:center}
+    /* bigger hero logo on white rounded panel */
+    .logo-sm{height:110px;margin:0 auto 18px;display:block;padding:12px;background:#fff;border-radius:14px;box-shadow:0 12px 30px rgba(11,17,24,0.10);border:1px solid rgba(0,0,0,0.04)}
+    .kicker{color:var(--accent);font-weight:700;letter-spacing:1px;margin-bottom:12px}
+    .hero h2{font-size:42px;margin:0 0 12px;line-height:1.02}
+    .hero p{color:var(--muted);margin:0 0 20px}
+    .hero-actions{display:flex;gap:12px;justify-content:center}
+    .btn{background:var(--accent);color:#fff;padding:12px 20px;border-radius:10px;border:none;font-weight:700;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+    .btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(11,134,184,0.12)}
+    .btn.ghost{background:transparent;border:1px solid rgba(11,134,184,0.12);color:var(--accent)}
+
+    /* subtle animation: zoom on hover & floating headline */
+    .hero:hover .hero-bg{transform:scale(1.06) translateY(-6px)}
+    @keyframes floatText{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+    .hero h2{animation:floatText 6s ease-in-out infinite}
+
+    /* Sections */
+    section{padding:72px 0}
+    .section-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}
+    .section-title h3{margin:0;font-size:22px;color:var(--accent)}
+    .muted{color:var(--muted)}
+
+    /* About */
+    .about{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+    .about p{color:var(--muted);font-size:15px}
+    .about-card{background:#fff;border-radius:10px;padding:18px;border:1px solid #eef2f6;box-shadow:0 8px 20px rgba(11,17,24,0.04)}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:24px}
+    .form input,.form textarea,.form select{width:100%;padding:12px;border-radius:8px;border:1px solid #e6eef6;margin-bottom:12px}
+    .form label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+    .contact-card{background:#fff;padding:18px;border-radius:10px;border:1px solid #eef2f6}
+
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Floating WhatsApp button */
+    .whatsapp-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index:1500;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:linear-gradient(180deg,#25D366,#1ebe57);
+      color:#fff;
+      padding:12px 16px;
+      border-radius:999px;
+      box-shadow:0 8px 26px rgba(0,0,0,0.18);
+      text-decoration:none;
+      font-weight:700;
+      font-family:Inter, Poppins, sans-serif;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .whatsapp-float:hover{ transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.26); }
+    .whatsapp-float svg{width:20px;height:20px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .about{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .hero h2{font-size:32px}
+    }
+    @media (max-width:640px){
+      nav ul{display:none}
+      .brand h1{display:none}
+      .hero{height:72vh}
+      .hero h2{font-size:24px}
+      .logo-sm{height:88px;padding:8px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png.jpg" alt="Cross Rabbit logo" loading="lazy">
+        <h1>Cross Rabbit</h1>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="Hero section">
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="hero-content container">
+        <img class="logo-sm" src="logo.png.jpg" alt="Cross Rabbit logo" loading="lazy">
+        <div class="kicker">Premium Men's Clothing</div>
+        <h2>Cross Rabbit Clothing & Co.<br>
+          <span style="font-weight:500;color:var(--muted);font-size:18px">Timeless styles, crafted with care in Mysuru</span>
+        </h2>
+        <p class="muted">Explore our lookbook and styling tips. Visit our store or contact us to book a fitting.</p>
+        <div class="hero-actions">
+          <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+          <button class="btn ghost" onclick="window.location.href='https://wa.me/918748896461'">WhatsApp</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="container">
+      <div class="section-title">
+        <h3>About</h3>
+        <div class="muted">Our story & values</div>
+      </div>
+
+      <div class="about">
+        <div>
+          <div class="about-card">
+            <p><strong>Cross Rabbit Clothing & Co.</strong> began in Mysuru with a simple idea: offer well-made, wearable men’s clothing that combines modern style with honest value. We focus on quality fabrics, careful tailoring and helpful in-store service. Visit us for curated seasonal collections and personalised fittings.</p>
+            <ul style="color:var(--muted);margin-top:12px;line-height:1.6">
+              <li>Quality-checked materials</li>
+              <li>Transparent returns & customer-first support</li>
+              <li>Local expertise and fittings</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside>
+          <div class="about-card">
+            <div style="font-weight:700;margin-bottom:8px">Customer note</div>
+            <div class="muted">“Great fit and friendly service. The store helped me choose the best outfit for an event.” — R. Kumar</div>
+            <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=800&q=80" alt="store preview" loading="lazy" style="width:100%;border-radius:8px;margin-top:12px;object-fit:cover">
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="container">
+      <div class="section-title">
+        <h3>Contact</h3>
+        <div class="muted">Get in touch — visit or message us</div>
+      </div>
+
+      <div class="contact-grid">
+        <div>
+          <form class="form" id="contactForm" onsubmit="return handleSubmit(event)">
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="Your name" required>
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+            <label for="topic">Topic</label>
+            <select id="topic" name="topic">
+              <option>Appointment</option>
+              <option>Order enquiry</option>
+              <option>Other</option>
+            </select>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+
+            <button class="btn" type="submit">Send message</button>
+            <div id="formMsg" style="color:var(--accent-2);margin-top:10px;display:none"></div>
+          </form>
+        </div>
+
+        <aside class="contact-card">
+          <div><strong>Store address</strong></div>
+          <div class="muted" style="margin-top:6px">#2820, 8th Cross Road, Adipampa Road, VV Mohalla, Mysuru, Karnataka 570002</div>
+
+          <div style="margin-top:12px"><strong>Phone</strong></div>
+          <div class="muted" style="margin-top:6px"><a href="tel:+918748896461">+91 87488 96461</a> • <a href="tel:+8050160789">+91 8050160789</a></div>
+
+          <div style="margin-top:12px"><strong>Hours</strong></div>
+          <div class="muted" style="margin-top:6px">Mon–Sat: 10:30 — 20:00</div>
+
+          <div style="margin-top:12px"><strong>WhatsApp</strong></div>
+          <div style="margin-top:8px">
+            <!-- inline WhatsApp link with a prefilled message -->
+            <a href="https://wa.me/918748896461?text=Hi%20Cross%20Rabbit%2C%20I%27d%20like%20to%20book%20a%20fitting.%20My%20name%20is%20%5BYour%20Name%5D."
+               target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Message us on WhatsApp</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div style="padding:18px 0;text-align:center;color:var(--muted)">© 2025 Cross Rabbit Clothing & Co. — Mysuru</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Floating WhatsApp button (sticky) -->
+  <a class="whatsapp-float"
+     href="https://wa.me/918748896461?text=Hi%20Cross%20Rabbit%2C%20I%27d%20like%20to%20ask%20about%20your%20collections%20and%20book%20a%20fitting.%20My%20name%20is%20%5BYour%20Name%5D."
+     target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20.52 3.48A11.79 11.79 0 0012 .25 11.82 11.82 0 001.94 9.32c0 2.08.54 4.03 1.57 5.77L.24 23.8l8.94-2.35a11.72 11.72 0 004.83 1.06h.01c6.5 0 11.84-5.27 11.84-11.78 0-3.15-1.22-6.09-3.24-8.29z" fill="#25D366"/>
+      <path d="M17.44 14.7c-.35-.18-2.06-1.02-2.38-1.14-.32-.12-.55-.18-.78.18-.22.35-.86 1.14-1.05 1.37-.19.23-.39.26-.74.09-.35-.18-1.48-.54-2.82-1.74-1.04-.9-1.74-2.01-1.94-2.36-.2-.35-.02-.54.15-.72.15-.15.35-.39.52-.59.17-.2.22-.36.35-.59.12-.22.06-.41-.03-.59-.09-.18-.78-1.88-1.07-2.58-.28-.69-.56-.59-.77-.6-.2-.01-.43-.01-.66-.01-.22 0-.58.08-.88.39-.3.31-1.15 1.12-1.15 2.73 0 1.6 1.18 3.15 1.34 3.37.16.22 2.32 3.54 5.65 4.83 3.33 1.28 3.33.85 3.93.8.59-.05 1.92-.78 2.19-1.53.27-.74.27-1.37.19-1.5-.08-.13-.3-.2-.65-.37z" fill="#fff"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
+
+<script>
+function handleSubmit(e){
+  e.preventDefault();
+  const name = encodeURIComponent(document.getElementById('name').value.trim());
+  const email = encodeURIComponent(document.getElementById('email').value.trim());
+  const topic = encodeURIComponent(document.getElementById('topic').value);
+  const message = encodeURIComponent(document.getElementById('message').value.trim());
+  if(!name || !email || !message){ alert('Please fill required fields'); return false; }
+
+  const text = `Hi Cross Rabbit, I have a ${topic}.\nName: ${decodeURIComponent(name)}\nEmail: ${decodeURIComponent(email)}\nMessage: ${decodeURIComponent(message)}`;
+  // URL-encode the full text for wa.me
+  const encoded = encodeURIComponent(text);
+  // open WhatsApp chat to +91 87488 96461
+  window.open(`https://wa.me/918748896461?text=${encoded}`, '_blank');
+
+  // Optional: show client-side confirmation and reset
+  document.getElementById('formMsg').style.display = 'block';
+  document.getElementById('formMsg').textContent = 'Opening WhatsApp — please press send to complete your message.';
+  e.target.reset();
+  return false;
+}
+</script>
+
+
+</body>
+</html>
